@@ -62,10 +62,17 @@ def decode(decryptFile):
                 #Append the last significant bit
                 decode_message += (format(k,'08b'))[-1]
                 position += 1
+                # Check if the binary length is equal to 8
+                # If True then convert that Byte to Character
                 if (position % 8 == 0 and position / 8 != 0):
+                    # Extract byte
                     temp = decode_message[position-8:position]
+                    # Convert from Binary to Integer
                     temp2 = int(temp,2)
+                    # Convert Integer to Character
                     data += (chr(temp2))
+                # If it found the stop string then stop converting
+                # And return the converted data
                 if data[-8:] == '!!!!####':
                     return data[:-8]
 
