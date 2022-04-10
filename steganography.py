@@ -38,17 +38,17 @@ def encrpyt(message):
             tempList = list(px[i,j])
             # Loop through layers (R,G,B) or (R,G,B,A)
             for k in range(len(tempList)):
-                if index >= n:
+                if index == n:
                     stopLoop = True
                     break
                 # If the least significant bit (LSB) is different from the message bit
                 # Then change the LSB to be the message bit
                 if (tempList[k] % 2 != int(message[index])):
                     tempList[k] = changeNum(tempList[k])
-                index+=1     
+                index+=1    
             px[i,j] = tuple(tempList)
 
-def decode(decryptFile):
+def decrypt(decryptFile):
     img_decode = Image.open(decryptFile, mode='r')
     px_decode = img_decode.load()
     row_decode,col_decode= img_decode.size
@@ -101,7 +101,4 @@ if mode == 1:
 elif mode == 2:
     decryptFile = input("Enter the Filename for decrypt: ")
     print("Decrypting file...")
-    print("Decoded Text:",decode(decryptFile))
-
-
-
+    print("Decoded Text:",decrypt(decryptFile))
